@@ -24,12 +24,19 @@ class _UpcommingWeatherScreenState extends State<UpcommingWeatherScreen> {
             return upcommingWeatherProvider.upcommingWeather != null
                 ? ListView.builder(
                     itemCount: upcommingWeatherProvider
-                            .upcommingWeather?.forecastday?.length ??
+                            .upcommingWeather?.forecast?.forecastday?.length ??
                         0,
                     itemBuilder: (BuildContext context, int index) {
                       return UpcommingWeatherListTitle(
                         forecastDay: upcommingWeatherProvider
-                            .upcommingWeather?.forecastday![index],
+                            .upcommingWeather?.forecast?.forecastday![index],
+                        image: upcommingWeatherProvider
+                                .upcommingWeather?.current?.condition?.icon ??
+                            "",
+                        temp: upcommingWeatherProvider
+                                .upcommingWeather?.current?.tempC
+                                .toString() ??
+                            "",
                       );
                     },
                   )

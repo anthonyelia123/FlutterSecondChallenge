@@ -213,12 +213,12 @@ class Forecast {
   Forecast({this.forecastday});
 
   Forecast.fromJson(Map<String?, dynamic> json) {
-    // if (json['forecastday'] != null) {
-    forecastday = [];
-    json['forecastday'].forEach((v) {
-      forecastday?.add(Forecastday.fromJson(v));
-    });
-    // }
+    if (json['forecastday'] != null) {
+      forecastday = [];
+      json['forecastday'].forEach((v) {
+        forecastday?.add(Forecastday.fromJson(v));
+      });
+    }
   }
 
   Map<String?, dynamic> toJson() {

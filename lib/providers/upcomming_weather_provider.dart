@@ -5,7 +5,7 @@ import '../api/dio_client.dart';
 
 class UpcommingWeatherProvider with ChangeNotifier {
   final DioClient _dioClient = DioClient();
-  Forecast? upcommingWeather;
+  ForecastResponseModel? upcommingWeather;
 
   Future<void> getUpcommingWeather() async {
     upcommingWeather = await _dioClient.getUpcommingWeather();
