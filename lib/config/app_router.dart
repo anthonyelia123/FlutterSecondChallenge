@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:second_challenge/providers/model_provider.dart';
 
 import '../screens/home_screen.dart';
 
@@ -10,10 +7,8 @@ class AppRouter {
     switch (settings.name) {
       case HomeScreen.routeName:
         return MaterialPageRoute(
-            builder: (_) => ChangeNotifierProvider<ModelProvider>(
-                  create: (context) => ModelProvider(),
-                  child: HomeScreen(),
-                ));
+          builder: (_) => const HomeScreen(),
+        );
       // case NFTDetailsScreen.routeName:
       //   final id = settings.arguments as String;
       //   return MaterialPageRoute(builder: (_) => NFTDetailsScreen(id: id));
