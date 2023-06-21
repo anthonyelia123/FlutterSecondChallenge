@@ -1,10 +1,28 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/current_weather_provider.dart';
 
-class CurrentWeatherScreen extends StatelessWidget {
+class CurrentWeatherScreen extends StatefulWidget {
   const CurrentWeatherScreen({super.key});
+
+  @override
+  State<CurrentWeatherScreen> createState() => _CurrentWeatherScreenState();
+}
+
+class _CurrentWeatherScreenState extends State<CurrentWeatherScreen> {
+  var currentTemp = 'C';
+
+  void changeTemp() {
+    setState(() {
+      if (currentTemp == 'C') {
+        currentTemp = 'F';
+      } else {
+        currentTemp = 'C';
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +50,27 @@ class CurrentWeatherScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '${currentWeatherProvider.currentWeather?.current?.tempC} C',
+                            currentTemp == 'C'
+                                ? '${currentWeatherProvider.currentWeather?.current?.tempC} $currentTemp'
+                                : '${currentWeatherProvider.currentWeather?.current?.tempF} $currentTemp',
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(border: Border.all()),
+                            padding: const EdgeInsets.all(5),
+                            child: InkWell(
+                              onTap: () {
+                                changeTemp();
+                              },
+                              child: Text(currentTemp,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15)),
+                            ),
                           )
                         ],
                       ),
