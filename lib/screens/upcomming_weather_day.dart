@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/upcomming_weather_provider.dart';
+import '../widgets/upcomming_weather_list_title.dart';
 
 class UpcommingWeatherScreen extends StatefulWidget {
   const UpcommingWeatherScreen({super.key});
@@ -22,9 +23,14 @@ class _UpcommingWeatherScreenState extends State<UpcommingWeatherScreen> {
           builder: (context, snapshot) {
             return upcommingWeatherProvider.upcommingWeather != null
                 ? ListView.builder(
-                    itemCount: upcommingWeatherProvider.upcommingWeather?.forecast.forecastday.length,
+                    itemCount: upcommingWeatherProvider
+                            .upcommingWeather?.forecastday?.length ??
+                        0,
                     itemBuilder: (BuildContext context, int index) {
-                      return Container();
+                      return UpcommingWeatherListTitle(
+                        forecastDay: upcommingWeatherProvider
+                            .upcommingWeather?.forecastday![index],
+                      );
                     },
                   )
                 : const Center(child: Text('No Data found'));

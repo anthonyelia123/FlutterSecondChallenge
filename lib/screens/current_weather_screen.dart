@@ -18,9 +18,8 @@ class CurrentWeatherScreen extends StatelessWidget {
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.network(currentWeatherProvider
-                              .currentWeather?.current?.condition?.icon ??
-                          ""),
+                      Image.network(
+                          'https:${currentWeatherProvider.currentWeather?.current?.condition?.icon}'),
                       const Text(
                         'Daily',
                         style: TextStyle(

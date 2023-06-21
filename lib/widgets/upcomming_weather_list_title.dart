@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/weather_response_model.dart';
+import '../models/forecast_model.dart';
 
 class UpcommingWeatherListTitle extends StatelessWidget {
-  const UpcommingWeatherListTitle({super.key, required this.upcommingWeather});
-  final WeatherResponseModel upcommingWeather;
+  const UpcommingWeatherListTitle({super.key, required this.forecastDay});
+  final Forecastday? forecastDay;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -13,23 +12,23 @@ class UpcommingWeatherListTitle extends StatelessWidget {
         //todo
       },
       child: ListTile(
-        leading: Image.network(upcommingWeather.current?.condition?.icon ?? ''),
+        // leading: Image.network(forecastDay.day?.condition?.icon ?? ''),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Day name, Day',
+            Text(forecastDay?.date ?? "",
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
             const SizedBox(
               height: 10,
             ),
-            Text('Sunrise',
+            Text('Sunrise: ${forecastDay?.astro?.sunrise}',
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
             const SizedBox(
               height: 10,
             ),
-            Text('sunset',
+            Text('Sunset: ${forecastDay?.astro?.sunset}',
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
           ],
